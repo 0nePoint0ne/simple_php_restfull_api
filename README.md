@@ -123,5 +123,5 @@ Bellow are route that are available from the api. Each route is listed with para
 }
 ```
 
-## future improvement
+## Future improvement
 Future improvement I would love to remake the `test.html` into a vue js application, but for now. I kept it simple due to time constraints.
