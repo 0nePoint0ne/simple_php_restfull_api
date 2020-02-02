@@ -13,6 +13,21 @@ CREATE TABLE Products(
     PRIMARY KEY(id)
 );
 ```
+### ER Diagram
+
+This is a very simple ER Diagram
+```
+///////////////////////////////
+/      Products               /     
+///////////////////////////////
+/      id              (PK)   /
+/      price                  /
+/      title                  /
+/      description            /
+/      stock                  /
+/      status                 /
+///////////////////////////////
+```
 
 ## Setting API up
 - `cd /opt/lampp/htdocs`
@@ -22,8 +37,6 @@ CREATE TABLE Products(
 
 ## Testing API
 A file called `test.html` can be used to test the api. Simply use the route bellow with the following object
-
-
 
 
 
