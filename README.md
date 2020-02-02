@@ -33,8 +33,10 @@ This api was created to be able to manage a simple database. It offers people an
 ## Setting up MySQL server
 
 -`CREATE DATABASE test;`
--`CREATE USER read_user@localhost
-IDENTIFIED BY PASSWORD '*P2UDFJWmI4VbjnOB';`
+-```
+CREATE USER read_user@localhost
+IDENTIFIED BY PASSWORD '*P2UDFJWmI4VbjnOB';
+```
 
 -```
 CREATE TABLE Products(
