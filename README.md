@@ -1,6 +1,8 @@
 # simple_php_restfull_api
 This api was created to be able to manage a simple database. It offers people an inside look how the backend of a small ecommerce site might work. Slim 
 
+Slim Framework was choosen because it is a micro framework that allows developers quickly and easily write APIs
+
 
 
 
