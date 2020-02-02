@@ -16,10 +16,11 @@ $app->add(function ($req, $res, $next) {
             ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
             ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
 });
-
+//this function get all the product in the database
 $app->get('/api/products', function (Request $request, Response $response) {
     $sql = "SELECT * FROM Products";
     try{
+        //create a database object
         $db = new db();
         $db = $db->connect();
 
@@ -33,9 +34,11 @@ $app->get('/api/products', function (Request $request, Response $response) {
 });
 
 $app->get('/api/product/{id}', function (Request $request, Response $response) {
+    //Get id data from url
     $id = $request->getAttribute('id');
     $sql = "SELECT * FROM Products WHERE id = $id";
     try{
+        //create a database object
         $db = new db();
         $db = $db->connect();
 
@@ -50,6 +53,7 @@ $app->get('/api/product/{id}', function (Request $request, Response $response) {
 
 
 $app->post('/api/product/add', function(Request $request, Response $response){
+    //Get data from json
     $price = $request->getParam('price');
     $id = $request->getParam('id');
     $title = $request->getParam('title');
@@ -60,6 +64,7 @@ $app->post('/api/product/add', function(Request $request, Response $response){
     $sql = "INSERT INTO Products (price,id,title,description,stock,status) VALUES (:price,:id,:title,:description,:stock,:status)";
 
     try{
+        //create a database object
         $db = new db();
         $db = $db->connect();
 
@@ -81,12 +86,14 @@ $app->post('/api/product/add', function(Request $request, Response $response){
 });
 
 $app->delete('/api/product/delete/{id}', function(Request $request, Response $response){
+    //Get id data from url
     $id = $request->getAttribute('id');
     
 
     $sql = "DELETE FROM Products WHERE id = $id";
 
     try{
+        //create a database object
         $db = new db();
         $db = $db->connect();
 
@@ -100,7 +107,9 @@ $app->delete('/api/product/delete/{id}', function(Request $request, Response $re
 });
 
 $app->put('/api/product/update/{id}', function(Request $request, Response $response){
+    //Get id data from url
     $id = $request->getAttribute('id');
+    //Get data from json
     $price = $request->getParam('price');
     $title = $request->getParam('title');
     $description = $request->getParam('description');
@@ -117,6 +126,7 @@ $app->put('/api/product/update/{id}', function(Request $request, Response $respo
 			WHERE id = $id";
 
     try{
+        //create a database object
         $db = new db();
 
         $db = $db->connect();

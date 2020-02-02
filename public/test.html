@@ -77,14 +77,16 @@
 </body>
 <script>
     function send_data() {
+        // This function main goal is to communicated with the server using ajax
+        // It is meant to update, insert, delete or retrieve data
 
-
+        // Set everything to blank
         let type_val = ''
         let url_val = ''
         let data_val = ''
 
 
-
+        //Check which value is selected and use apporipate method data
         if($('#input_method').val() ==  'post'){
             type_val = 'Post'
             url_val = $('#input_url').val()
@@ -104,6 +106,9 @@
             url_val = $('#input_url').val()
         }
 
+
+
+        //Select apporipate method
         if(type_val == 'Get' || type_val == 'Delete'){
             $.ajax({
                     type: type_val,
@@ -114,8 +119,6 @@
                     }
                 });
         }
-
-
         if(type_val == 'Post' || type_val == 'Put'){
             $.ajax({
                     type: type_val,
