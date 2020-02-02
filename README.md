@@ -31,7 +31,12 @@ This api was created to be able to manage a simple database. It offers people an
 
 
 ## Setting up MySQL server
-```
+
+-`CREATE DATABASE test;`
+-`CREATE USER read_user@localhost
+IDENTIFIED BY PASSWORD '*P2UDFJWmI4VbjnOB';`
+
+-```
 CREATE TABLE Products(
     price INT,
     stock INT,
@@ -124,4 +129,4 @@ Bellow are route that are available from the api. Each route is listed with para
 ```
 
 ## Future improvement
-Future improvement I would love to remake the `test.html` into a vue js application, but for now. I kept it simple due to time constraints.
+Future improvement I would love to remake the `test.html` into a vue js application, but for now. I kept it simple due to time constraints. The other thing I really wish I did was set up a configuration file for the server.
