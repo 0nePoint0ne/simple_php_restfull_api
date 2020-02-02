@@ -32,6 +32,22 @@ $app->get('/api/products', function (Request $request, Response $response) {
     }
 });
 
+$app->get('/api/product/{id}', function (Request $request, Response $response) {
+    $id = $request->getAttribute('id');
+    $sql = "SELECT * FROM Products WHERE id = $id";
+    try{
+        $db = new db();
+        $db = $db->connect();
+
+        $stmt = $db->query($sql);
+        $products = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $db = null;
+        echo json_encode($products);
+    } catch(PDOException $e){
+        echo '{"error": {"text": '.$e->getMessage().'}';
+    }
+});
+
 
 $app->post('/api/product/add', function(Request $request, Response $response){
     $price = $request->getParam('price');
