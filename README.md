@@ -1,4 +1,33 @@
 # simple_php_restfull_api
+This api was created to be able to manage a simple database. It offers people an inside look how the backend of a small ecommerce site might work. Slim 
+
+
+
+
+## How this api works
+- This api operates by only using 3 simple steps:
+    - First, the user send a request with the required parameters to the server
+    - Second, the api process the request and take the appropiate action for `[post, put, delete, get]`
+    - Third, return a coresponding json response stating the action has completed
+    
+
+## Structure Layout
+```
+.
+├── composer.json
+├── vendor
+├── public
+│   ├── index.php
+│   └── test.html
+├── README.md
+└── src
+    ├── config
+    │   └── db.php
+    └── routes
+        └── products.php
+```
+
+
 
 
 ## Setting up MySQL server
@@ -15,7 +44,7 @@ CREATE TABLE Products(
 ```
 ### ER Diagram
 
-This is a very simple ER Diagram
+This is a very simple ER Diagram to make it easier to understand the database relationship with other tables. But in our case there is only one table.
 ```
 ///////////////////////////////
 /      Products               /     
@@ -94,3 +123,5 @@ Bellow are route that are available from the api. Each route is listed with para
 }
 ```
 
+## future improvement
+Future improvement I would love to remake the `test.html` into a vue js application, but for now. I kept it simple due to time constraints.
