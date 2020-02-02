@@ -34,31 +34,88 @@ $app->get('/api/products', function (Request $request, Response $response) {
 
 
 $app->post('/api/product/add', function(Request $request, Response $response){
-    $price = $request->getAttribute('price');
+    $price = $request->getParam('price');
     $id = $request->getParam('id');
     $title = $request->getParam('title');
     $description = $request->getParam('description');
-    $available = $request->getParam('available');
+    $stock = $request->getParam('stock');
     $status = $request->getParam('status');
 
-    $sql = "INSERT INTO Products (price,id,title,description,available,status) VALUES (:price,:id,:title,:description,:available,:status)";
+    $sql = "INSERT INTO Products (price,id,title,description,stock,status) VALUES (:price,:id,:title,:description,:stock,:status)";
 
     try{
         $db = new db();
         $db = $db->connect();
 
         $stmt = $db->prepare($sql);
-
         $stmt->bindParam(':price', $price);
         $stmt->bindParam(':id',  $id);
         $stmt->bindParam(':title',      $title);
         $stmt->bindParam(':description',      $description); 
-        $stmt->bindParam(':available',    $available);
+        $stmt->bindParam(':stock',    $stock);
         $stmt->bindParam(':status',       $status);
 
         $stmt->execute();
 
         echo '{"notice": {"text": "Product Added"}';
+
+    } catch(PDOException $e){
+        echo '{"error": {"text": '.$e->getMessage().'}';
+    }
+});
+
+$app->delete('/api/product/delete/{id}', function(Request $request, Response $response){
+    $id = $request->getAttribute('id');
+    
+
+    $sql = "DELETE FROM Products WHERE id = $id";
+
+    try{
+        $db = new db();
+        $db = $db->connect();
+
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $db = null;
+        echo '{"notice": {"text": "Product Deleted"}';
+    } catch(PDOException $e){
+        echo '{"error": {"text": '.$e->getMessage().'}';
+    }
+});
+
+$app->put('/api/product/update/{id}', function(Request $request, Response $response){
+    $id = $request->getAttribute('id');
+    $price = $request->getParam('price');
+    $title = $request->getParam('title');
+    $description = $request->getParam('description');
+    $stock = $request->getParam('stock');
+    $status = $request->getParam('status');
+
+
+    $sql = "UPDATE Products SET
+				price 	= :price,
+                title		= :title,
+                description		= :description,
+                stock 	= :stock,
+                status 		= :status
+			WHERE id = $id";
+
+    try{
+        $db = new db();
+
+        $db = $db->connect();
+
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindParam(':price', $price);
+        $stmt->bindParam(':title',      $title);
+        $stmt->bindParam(':description',      $description); 
+        $stmt->bindParam(':stock',    $stock);
+        $stmt->bindParam(':status',       $status);
+
+        $stmt->execute();
+
+        echo '{"notice": {"text": "Product Updated"}';
 
     } catch(PDOException $e){
         echo '{"error": {"text": '.$e->getMessage().'}';
