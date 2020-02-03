@@ -34,13 +34,12 @@ Slim Framework was choosen because it is a micro framework that allows developer
 
 ## Setting up MySQL server
 
--`CREATE DATABASE test;`
--```
+```
+CREATE DATABASE test;
+
 CREATE USER read_user@localhost
 IDENTIFIED BY PASSWORD '*P2UDFJWmI4VbjnOB';
-```
 
--```
 CREATE TABLE Products(
     price INT,
     stock INT,
